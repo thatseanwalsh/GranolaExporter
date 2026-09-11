@@ -11,6 +11,12 @@
 - **Smart Directory Management:** Automatically creates output subfolders (`granola_markdown`, `granola_word_docs`, `granola_pdfs`) in your CSV's directory.
 - **Cross-Platform:** Runs natively on macOS and Windows
 
+## 📷 Screenshot
+
+<p align="center">
+  <img src="images/screenshot.png" alt="GUI Screenshot" width="500">
+</p>
+
 ## 🚀 Getting Started
 
 ### 🍏 macOS Installation
@@ -23,8 +29,7 @@
    - Drag **Granola Exporter** into the **Applications** folder shortcut in the window.
 
 **First-time launch note:** Because this app is self-signed, macOS Gatekeeper may show a warning on first launch:
-   - Control-click (or right-click) **Granola Exporter** in your Applications folder and select **Open**.
-   - Click **Open** in the prompt. *(You only need to do this once).*
+   - **System Settings** -> **Privacy & Security** -> Scroll down to **Security** -> Click **Open Anyway**
 
 
 ### 🪟 Windows Installation

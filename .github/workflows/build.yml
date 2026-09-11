@@ -1,8 +1,10 @@
-name: Build Desktop Applications
+name: Build and Release Desktop Application
 
 on:
   push:
     branches: [ "main", "master" ]
+    tags:
+      - 'v*'
   pull_request:
     branches: [ "main", "master" ]
   workflow_dispatch:
@@ -16,13 +18,23 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            artifact_name: GranolaExporter-macOS
+            artifact_name: GranolaExporter-macOS.dmg
+            artifact_path: dist/GranolaExporter-macOS.dmg
             build_cmd: |
               pyinstaller --windowed --icon=icon.icns --add-data "icon.png:." granolaexporter.py
-              cd dist
-              zip -r GranolaExporter-macOS.zip GranolaExporter.app
+              brew install create-dmg
+              create-dmg \
+                --volname "Granola Exporter" \
+                --window-size 500 300 \
+                --icon-size 100 \
+                --icon "GranolaExporter.app" 120 120 \
+                --hide-extension "GranolaExporter.app" \
+                --app-drop-link 380 120 \
+                "dist/GranolaExporter-macOS.dmg" \
+                "dist/"
           - os: windows-latest
-            artifact_name: GranolaExporter-Windows
+            artifact_name: GranolaExporter.exe
+            artifact_path: dist/GranolaExporter.exe
             build_cmd: |
               pyinstaller --noconsole --onefile --icon=icon.ico --add-data "icon.png;." granolaexporter.py
 
@@ -44,16 +56,17 @@ jobs:
       - name: Build executable with PyInstaller
         run: ${{ matrix.build_cmd }}
 
-      - name: Upload Windows Artifact
-        if: matrix.os == 'windows-latest'
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact_name }}
-          path: dist/GranolaExporter.exe
+          path: ${{ matrix.artifact_path }}
 
-      - name: Upload macOS Artifact
-        if: matrix.os == 'macos-latest'
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
         with:
-          name: ${{ matrix.artifact_name }}
-          path: dist/GranolaExporter-macOS.zip
+          files: ${{ matrix.artifact_path }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

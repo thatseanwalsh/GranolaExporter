@@ -12,8 +12,6 @@ A clean, desktop GUI application built to parse and convert Granola-exported mee
 - **Smart Directory Management:** Automatically creates output subfolders (`granola_markdown`, `granola_word_docs`, `granola_pdfs`) in your CSV's directory.
 - **Cross-Platform:** Runs natively on macOS and Windows
 
----
-
 ## 🚀 Getting Started
 
 ### 🍏 macOS Installation
@@ -28,8 +26,6 @@ A clean, desktop GUI application built to parse and convert Granola-exported mee
 **First-time launch note:** Because this app is self-signed, macOS Gatekeeper may show a warning on first launch:
    - Control-click (or right-click) **Granola Exporter** in your Applications folder and select **Open**.
    - Click **Open** in the prompt. *(You only need to do this once).*
-
----
 
 ### 🪟 Windows Installation
 

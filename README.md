@@ -1,7 +1,7 @@
 # 🥣 Granola Notes Exporter
 
 <p align="center">
-  <font>A clean, desktop GUI application built to parse and convert Granola-exported meeting notes (CSV) into beautifully formatted Markdown, Word (.docx), or PDF documents.</font><br>
+  <font>A clean, desktop GUI application built to parse and convert Granola-exported meeting notes (CSV) into beautifully formatted Markdown, Word (.docx), or PDF documents.</font><br><br>
   <img src="icon.png" alt="Granola Exporter Icon" width="128" />
 </p>
 
@@ -26,6 +26,7 @@
    - Control-click (or right-click) **Granola Exporter** in your Applications folder and select **Open**.
    - Click **Open** in the prompt. *(You only need to do this once).*
 
+<br>
 ### 🪟 Windows Installation
 
 1. Go to the **[Releases Page](https://github.com/thatseanwalsh/GranolaExporter/releases)** and download `GranolaExporter.exe`.

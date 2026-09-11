@@ -27,6 +27,7 @@
    - Click **Open** in the prompt. *(You only need to do this once).*
 
 <br>
+
 ### 🪟 Windows Installation
 
 1. Go to the **[Releases Page](https://github.com/thatseanwalsh/GranolaExporter/releases)** and download `GranolaExporter.exe`.

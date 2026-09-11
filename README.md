@@ -1,8 +1,7 @@
 # 🥣 Granola Notes Exporter
 
-A clean, desktop GUI application built to parse and convert Granola-exported meeting notes (CSV) into beautifully formatted Markdown, Word (.docx), or PDF documents.
-
 <p align="center">
+  <font>A clean, desktop GUI application built to parse and convert Granola-exported meeting notes (CSV) into beautifully formatted Markdown, Word (.docx), or PDF documents.</font>
   <img src="icon.png" alt="Granola Exporter Icon" width="128" />
 </p>
 

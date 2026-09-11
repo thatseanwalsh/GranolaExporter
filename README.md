@@ -26,7 +26,6 @@
    - Control-click (or right-click) **Granola Exporter** in your Applications folder and select **Open**.
    - Click **Open** in the prompt. *(You only need to do this once).*
 
-<br>
 
 ### 🪟 Windows Installation
 

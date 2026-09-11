@@ -25,17 +25,17 @@ jobs:
             artifact_name: GranolaExporter-macOS.dmg
             artifact_path: dist/GranolaExporter-macOS.dmg
             build_cmd: |
-              pyinstaller --windowed --icon=icon.icns --add-data "icon.png:." granolaexporter.py
+              pyinstaller --windowed --icon=icon.icns --add-data "icon.png:." granolaconvert.py
               brew install create-dmg
               create-dmg \
                 --volname "Granola Exporter" \
                 --window-size 500 300 \
                 --icon-size 100 \
-                --icon "GranolaExporter.app" 120 120 \
-                --hide-extension "GranolaExporter.app" \
+                --icon "granola_gui.app" 120 120 \
+                --hide-extension "granola_gui.app" \
                 --app-drop-link 380 120 \
                 "dist/GranolaExporter-macOS.dmg" \
-                "dist/"
+                "dist/granola_gui.app"
           - os: windows-latest
             artifact_name: GranolaExporter.exe
             artifact_path: dist/GranolaExporter.exe

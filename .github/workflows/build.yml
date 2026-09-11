@@ -1,0 +1,59 @@
+name: Build Desktop Applications
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            artifact_name: GranolaExporter-macOS
+            build_cmd: |
+              pyinstaller --windowed --icon=icon.icns --add-data "icon.png:." granolaconvert.py
+              cd dist
+              zip -r GranolaExporter-macOS.zip granola_gui.app
+          - os: windows-latest
+            artifact_name: GranolaExporter-Windows
+            build_cmd: |
+              pyinstaller --noconsole --onefile --icon=icon.ico --add-data "icon.png;." granolaconvert.py
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build executable with PyInstaller
+        run: ${{ matrix.build_cmd }}
+
+      - name: Upload Windows Artifact
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: dist/granolaconvert.exe
+
+      - name: Upload macOS Artifact
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: dist/GranolaExporter-macOS.zip
